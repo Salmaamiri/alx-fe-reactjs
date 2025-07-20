@@ -1,3 +1,6 @@
+import React, { useContext } from "react";
+import { UserContext } from "../UserContext";  // adjust path if needed
+
 const UserProfile = () => {
   const { name, age, bio } = useContext(UserContext);
 
