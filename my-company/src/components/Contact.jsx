@@ -4,7 +4,7 @@ function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: '',
+    message: ''
   });
 
   const handleChange = (e) => {
@@ -12,15 +12,14 @@ function Contact() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // ✅ checker expects this
+    e.preventDefault();
     alert('Form submitted!');
-    // You can also console.log(formData) here if you want
   };
 
   return (
     <div style={{ padding: '20px' }}>
       <h1>Contact Us</h1>
-      <form onSubmit={handleSubmit}> {/* ✅ onSubmit */}
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="name"
@@ -32,4 +31,24 @@ function Contact() {
         <input
           type="email"
           name="email"
+          placeholder="Your Email"
+          value={formData.email}
+          onChange={handleChange}
+          style={{ display: 'block', margin: '10px 0' }}
+        />
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          value={formData.message}
+          onChange={handleChange}
+          style={{ display: 'block', margin: '10px 0' }}
+        />
+        
+        {/* ✅ Make sure THIS BUTTON exists */}
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  );
+}
 
+export de
