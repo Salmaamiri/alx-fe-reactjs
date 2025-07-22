@@ -38,6 +38,7 @@ const useRecipeStore = create((set) => ({
   recommendations: [],
   generateRecommendations: () =>
     set((state) => {
+      // Generate recommendations based on favorites or other criteria
       const recommended = state.recipes.filter(
         (recipe) => state.favorites.includes(recipe.id) && Math.random() > 0.5
       );
