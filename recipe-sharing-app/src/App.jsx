@@ -5,12 +5,14 @@ import AddRecipeForm from './components/AddRecipeForm';
 import RecipeDetails from './components/RecipeDetails';
 import FavoritesList from './components/FavoritesList';
 import RecommendationsList from './components/RecommendationsList';
+import SearchBar from './components/SearchBar';
 
 function App() {
   return (
     <Router>
       <div>
         <h1>Recipe Sharing App</h1>
+        <SearchBar />
         <nav>
           <Link to="/">Home</Link> | <Link to="/favorites">Favorites</Link> |{' '}
           <Link to="/recommendations">Recommendations</Link>
@@ -35,4 +37,3 @@ function App() {
 }
 
 export default App;
-
