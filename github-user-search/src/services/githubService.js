@@ -1,8 +1,7 @@
-// src/services/githubService.js
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: import.meta.env.VITE_GITHUB_API_URL,
+  baseURL: "https://api.github.com",
 });
 
 export const fetchUserData = async (username) => {
