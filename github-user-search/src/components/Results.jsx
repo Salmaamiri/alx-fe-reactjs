@@ -1,24 +1,26 @@
-const Results = ({ users }) => {
-  if (users.length === 0) return null;
+function Results({ users }) {
+  if (!users.length) {
+    return <p className="text-center text-gray-500">No users found.</p>;
+  }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       {users.map((user) => (
-        <div key={user.id} className="bg-gray-100 p-4 rounded-lg shadow">
-          <img src={user.avatar_url} alt={user.login} className="w-16 h-16 rounded-full" />
-          <h2 className="text-lg font-bold mt-2">{user.login}</h2>
+        <li key={user.id} className="bg-white p-4 shadow rounded text-center">
+          <img src={user.avatar_url} alt={user.login} className="w-20 h-20 mx-auto rounded-full mb-2" />
+          <h2 className="text-lg font-semibold">{user.login}</h2>
           <a
             href={user.html_url}
             target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 hover:underline"
+            rel="noreferrer"
+            className="text-blue-500 hover:underline text-sm"
           >
             View Profile
           </a>
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
-};
+}
 
 export default Results;
