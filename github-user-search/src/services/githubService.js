@@ -1,22 +1,16 @@
+import axios from 'axios';
+
 export async function searchGithubUsers({ username, location, minRepos }) {
-  // Build search query string
-  let query = username || "";
+  let query = '';
 
-  if (location) {
-    query += ` location:${location}`;
-  }
+  if (username) query += `${username} in:login`;
+  if (location) query += ` location:${location}`;
+  if (minRepos !== undefined) query += ` repos:>=${minRepos}`;
 
-  if (minRepos) {
-    query += ` repos:>=${minRepos}`;
-  }
+  const url = `https://api.github.com/search/users?q=${encodeURIComponent(query)}`;
 
-  const response = await fetch(`https://api.github.com/search/users?q=${encodeURIComponent(query)}`);
-  
-  if (!response.ok) {
-    throw new Error("GitHub API error");
-  }
+  const response = await axios.get(url);
 
-  const data = await response.json();
-  return data.items;
+  // Return the items array (users) or an empty array if none found
+  return response.data.items || [];
 }
-

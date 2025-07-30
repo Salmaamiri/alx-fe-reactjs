@@ -4,22 +4,17 @@ function Results({ users }) {
   }
 
   return (
-    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      {users.map((user) => (
-        <li key={user.id} className="bg-white p-4 shadow rounded text-center">
-          <img src={user.avatar_url} alt={user.login} className="w-20 h-20 mx-auto rounded-full mb-2" />
-          <h2 className="text-lg font-semibold">{user.login}</h2>
-          <a
-            href={user.html_url}
-            target="_blank"
-            rel="noreferrer"
-            className="text-blue-500 hover:underline text-sm"
-          >
-            View Profile
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-xl mx-auto">
+      {users.map(user => (
+        <div key={user.id} className="p-4 border rounded shadow">
+          <a href={user.html_url} target="_blank" rel="noopener noreferrer">
+            <img src={user.avatar_url} alt={user.login} className="w-16 h-16 rounded-full mx-auto" />
+            <h3 className="text-center mt-2 font-semibold">{user.login}</h3>
           </a>
-        </li>
+          {/* Optional: Add more info like location or repos count if you fetch it */}
+        </div>
       ))}
-    </ul>
+    </div>
   );
 }
 
