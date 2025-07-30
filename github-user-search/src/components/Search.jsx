@@ -1,5 +1,25 @@
 import { useState } from "react";
 
+async function fetchUserData(username) {
+  const response = await fetch(`https://api.github.com/search/users?q=${username}`);
+  const data = await response.json();
+
+  const usersWithDetails = await Promise.all(
+    data.items.map(async (user) => {
+      const res = await fetch(user.url);
+      const details = await res.json();
+      return {
+        login: user.login,
+        avatar_url: user.avatar_url,
+        html_url: user.html_url,
+        location: details.location || "Not specified",
+      };
+    })
+  );
+
+  return usersWithDetails;
+}
+
 function Search() {
   const [username, setUsername] = useState("");
   const [users, setUsers] = useState([]);
@@ -13,23 +33,8 @@ function Search() {
     setUsers([]);
 
     try {
-      const response = await fetch(`https://api.github.com/search/users?q=${username}`);
-      const data = await response.json();
-
-      const usersWithDetails = await Promise.all(
-        data.items.map(async (user) => {
-          const res = await fetch(user.url);
-          const details = await res.json();
-          return {
-            login: user.login,
-            avatar_url: user.avatar_url,
-            html_url: user.html_url,
-            location: details.location || "Not specified",
-          };
-        })
-      );
-
-      setUsers(usersWithDetails);
+      const result = await fetchUserData(username);
+      setUsers(result);
     } catch (err) {
       setError("Failed to fetch users.");
     }
