@@ -12,19 +12,20 @@ const PostsComponent = () => {
   const {
     data,
     error,
+    isError,
     isLoading,
     isFetching,
     refetch,
   } = useQuery({
     queryKey: ["posts"],
     queryFn: fetchPosts,
-    cacheTime: 1000 * 60 * 5, // 5 minutes in ms
-    refetchOnWindowFocus: false, // don’t auto-refetch when switching tabs
-    keepPreviousData: true, // keep old data when fetching new
+    cacheTime: 1000 * 60 * 5, // 5 minutes
+    refetchOnWindowFocus: false,
+    keepPreviousData: true,
   });
 
   if (isLoading) return <p>Loading posts...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (isError) return <p>Error: {error.message}</p>;
 
   return (
     <div className="p-4">
