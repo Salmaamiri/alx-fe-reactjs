@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import TodoList from "../components/TodoList";
+import TodoList from "../components/TodoList"; // must match relative path
 
 describe("TodoList Component", () => {
   test("renders initial todos", () => {
