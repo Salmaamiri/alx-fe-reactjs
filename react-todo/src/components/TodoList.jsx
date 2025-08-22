@@ -30,8 +30,7 @@ const TodoList = () => {
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-xl font-bold mb-2">Todo List</h1>
+    <div>
       <form onSubmit={addTodo} className="mb-4">
         <input
           type="text"
