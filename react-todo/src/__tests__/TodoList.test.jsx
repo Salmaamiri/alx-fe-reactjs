@@ -10,7 +10,7 @@ describe("TodoList Component", () => {
     expect(screen.getByText("Build a Todo App")).toBeInTheDocument();
   });
 
-  test("can add a new todo", () => {
+  test("adds a new todo", () => {
     render(<TodoList />);
     const input = screen.getByPlaceholderText("Add a todo");
     const addButton = screen.getByText("Add");
@@ -21,14 +21,14 @@ describe("TodoList Component", () => {
     expect(screen.getByText("New Todo")).toBeInTheDocument();
   });
 
-  test("can toggle todo completion", () => {
+  test("toggles todo completion", () => {
     render(<TodoList />);
     const todoItem = screen.getByText("Learn React");
     fireEvent.click(todoItem);
     expect(todoItem).toHaveClass("line-through");
   });
 
-  test("can delete a todo", () => {
+  test("deletes a todo", () => {
     render(<TodoList />);
     const todoItem = screen.getByText("Build a Todo App");
     const deleteButton = todoItem.querySelector("button");
